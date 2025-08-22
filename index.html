@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JSPM College | Official Website</title>
+  <meta name="description" content="JSPM College – Programs, Admissions, Campus Life, Research, and Contact." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b1020;
+      --bg-soft:#111834;
+      --card:#0f1730;
+      --txt:#eef2ff;
+      --muted:#a5b4fc;
+      --brand:#6d28d9; /* royal purple */
+      --brand-2:#38bdf8; /* sky */
+      --accent:#f59e0b; /* amber */
+      --ok:#22c55e;
+      --danger:#ef4444;
+      --shadow: 0 10px 30px rgba(0,0,0,.45);
+      --radius: 16px;
+      --gap: clamp(16px, 3vw, 28px);
+      --maxw: 1200px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; color:var(--txt); background:radial-gradient(1200px 800px at 80% -10%, rgba(104,56,255,.25), transparent 50%), radial-gradient(900px 700px at -10% 10%, rgba(56,189,248,.18), transparent 50%), var(--bg);
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:var(--maxw); margin-inline:auto; padding:0 var(--gap)}
+
+    /* Header */
+    header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(140%) blur(8px); background:linear-gradient(180deg, rgba(11,16,32,.9), rgba(11,16,32,.6)); border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav{display:flex; align-items:center; justify-content:space-between; height:72px}
+    .logo{display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.3px}
+    .logo .mark{width:36px; height:36px; display:grid; place-items:center; border-radius:10px; background:conic-gradient(from 180deg, var(--brand), var(--brand-2)); box-shadow:0 6px 18px rgba(104,56,255,.35)}
+    .logo span{font-size:1.05rem}
+    nav ul{display:flex; list-style:none; gap:18px; padding:0; margin:0}
+    nav a{padding:10px 14px; border-radius:10px; color:#cbd5ff}
+    nav a:hover{background:rgba(255,255,255,.06); color:#fff}
+    .cta{padding:10px 14px; border-radius:10px; background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:white; box-shadow:0 8px 20px rgba(56,189,248,.25)}
+
+    /* Mobile nav */
+    .menu-btn{display:none; background:none; border:none; color:var(--txt); font-size:1.2rem}
+    @media (max-width: 900px){
+      nav ul{display:none; position:absolute; top:72px; right:var(--gap); background:var(--bg-soft); border:1px solid rgba(255,255,255,.06); border-radius:14px; padding:10px; width:min(90vw, 320px); box-shadow:var(--shadow)}
+      nav ul.open{display:grid}
+      nav li{padding:6px}
+      .menu-btn{display:inline-grid}
+    }
+
+    /* Hero */
+    .hero{position:relative; padding: clamp(60px, 8vw, 110px) 0}
+    .hero-grid{display:grid; grid-template-columns: 1.1fr .9fr; gap:var(--gap); align-items:center}
+    .hero h1{font-size:clamp(2rem, 4.2vw, 3.4rem); line-height:1.08; margin:0 0 12px}
+    .hero p{color:#cbd5ff; font-size:clamp(1rem, 1.6vw, 1.1rem)}
+    .hero .actions{display:flex; gap:12px; margin-top:22px}
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:12px; border:1px solid rgba(255,255,255,.08)}
+    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:white; border:none}
+    .btn.ghost:hover{background:rgba(255,255,255,.06)}
+    .stat-row{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:26px}
+    .stat{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.06); padding:16px; border-radius:14px; text-align:center}
+    .stat .n{font-weight:800; font-size:1.4rem}
+    .stat .l{color:#aeb8ff; font-size:.85rem}
+    .hero .art{position:relative; border-radius:20px; overflow:hidden; background:linear-gradient(180deg, rgba(109,40,217,.25), rgba(56,189,248,.15)); border:1px solid rgba(255,255,255,.08); box-shadow: var(--shadow)}
+    .hero .art::before{content:""; position:absolute; inset:0; background:radial-gradient(600px 400px at 60% -10%, rgba(245,158,11,.25), transparent 50%)}
+    .hero .art svg{display:block; width:100%; height:auto}
+    @media (max-width: 900px){.hero-grid{grid-template-columns:1fr}.stat-row{grid-template-columns:repeat(2,1fr)}}
+
+    /* Section util */
+    section{padding: clamp(50px, 7vw, 90px) 0}
+    .title{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:26px}
+    .eyebrow{font-size:.85rem; letter-spacing:.18em; text-transform:uppercase; color:var(--muted)}
+    h2{margin:.2rem 0; font-size: clamp(1.4rem, 2.5vw, 2rem)}
+    .sub{color:#cbd5ff; max-width:800px}
+
+    /* Cards grid */
+    .grid{display:grid; gap:var(--gap)}
+    .cols-3{grid-template-columns:repeat(3,1fr)}
+    .cols-2{grid-template-columns:repeat(2,1fr)}
+    @media (max-width: 900px){.cols-3,.cols-2{grid-template-columns:1fr}}
+
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow)}
+    .card h3{margin:.2rem 0 .6rem}
+    .pill{display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(56,189,248,.15); color:#e0f2fe; font-size:.8rem; border:1px solid rgba(255,255,255,.08)}
+
+    /* Timeline */
+    .timeline{position:relative; margin-top:20px}
+    .timeline::before{content:""; position:absolute; left:14px; top:0; bottom:0; width:2px; background:linear-gradient(var(--brand), var(--brand-2))}
+    .step{position:relative; padding-left:44px; margin:18px 0}
+    .step::before{content:""; position:absolute; left:7px; top:6px; width:16px; height:16px; border-radius:50%; background:var(--bg); border:3px solid var(--brand-2); box-shadow:0 0 0 4px rgba(56,189,248,.15)}
+
+    /* Accordion */
+    .faq{border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.08)}
+    details{background:rgba(255,255,255,.03); border-bottom:1px solid rgba(255,255,255,.06)}
+    details[open]{background:rgba(255,255,255,.05)}
+    summary{cursor:pointer; list-style:none; padding:16px 20px; font-weight:600}
+    details p{padding:0 20px 18px; color:#cbd5ff}
+
+    /* Recruiters strip */
+    .marquee{display:flex; gap:28px; overflow:auto; padding:16px; mask-image:linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);}
+    .badge{padding:10px 14px; border-radius:12px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); white-space:nowrap}
+
+    /* Contact */
+    .contact{display:grid; grid-template-columns:1.2fr .8fr; gap:var(--gap)}
+    .form{display:grid; gap:12px}
+    .input, textarea{width:100%; background:#0b1227; border:1px solid rgba(255,255,255,.08); color:var(--txt); padding:12px 14px; border-radius:12px; outline:none}
+    textarea{min-height:130px; resize:vertical}
+    .map{border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.08); min-height:300px; background:#0b1227}
+    @media (max-width: 900px){.contact{grid-template-columns:1fr}}
+
+    /* Footer */
+    footer{padding:40px 0; border-top:1px solid rgba(255,255,255,.06); background:linear-gradient(180deg, rgba(255,255,255,.02), transparent)}
+    .foot-grid{display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:var(--gap)}
+    .foot-grid a{display:block; color:#cbd5ff; margin:8px 0}
+    .foot-grid a:hover{color:#fff}
+    @media (max-width:900px){.foot-grid{grid-template-columns:1fr 1fr}}
+
+    /* Back to top */
+    #toTop{position:fixed; right:18px; bottom:18px; padding:12px 14px; border-radius:999px; background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#fff; border:none; box-shadow:var(--shadow); display:none}
+
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <a class="logo" href="#home" aria-label="JSPM College Home">
+        <span class="mark" aria-hidden="true">🎓</span>
+        <span>JSPM <span style="opacity:.8;font-weight:700">College</span></span>
+      </a>
+      <nav>
+        <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navMenu">☰</button>
+        <ul id="navMenu" aria-label="Primary Navigation">
+          <li><a href="#about">About</a></li>
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#admissions">Admissions</a></li>
+          <li><a href="#campus">Campus Life</a></li>
+          <li><a href="#placements">Placements</a></li>
+          <li><a href="#contact" class="cta">Apply Now</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">Welcome to JSPM</div>
+        <h1>Where ambition meets opportunity.</h1>
+        <p>JSPM College is a student‑centric institution fostering innovation, research, and industry‑ready skills. Join a vibrant community, modern labs, and a placement‑driven ecosystem.</p>
+        <div class="actions">
+          <a class="btn primary" href="#admissions">Start Application</a>
+          <a class="btn ghost" href="#programs">Explore Programs</a>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><div class="n">120+</div><div class="l">Recruiters</div></div>
+          <div class="stat"><div class="n">25K+</div><div class="l">Alumni</div></div>
+          <div class="stat"><div class="n">40+</div><div class="l">Clubs</div></div>
+          <div class="stat"><div class="n">95%</div><div class="l">Placement Rate</div></div>
+        </div>
+      </div>
+      <div class="art" aria-hidden="true">
+        <!-- Decorative SVG Illustration -->
+        <svg viewBox="0 0 600 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Campus illustration">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1">
+              <stop offset="0%" stop-color="#6d28d9"/>
+              <stop offset="100%" stop-color="#38bdf8"/>
+            </linearGradient>
+          </defs>
+          <rect width="100%" height="100%" fill="#0f1730"/>
+          <g opacity="0.9">
+            <circle cx="500" cy="80" r="50" fill="url(#g1)"/>
+            <rect x="60" y="320" width="480" height="26" rx="13" fill="#1f2a56"/>
+            <rect x="120" y="170" width="360" height="160" rx="18" fill="#1a2450" stroke="#2a3470"/>
+            <rect x="170" y="200" width="80" height="90" rx="10" fill="#24316b"/>
+            <rect x="270" y="200" width="80" height="90" rx="10" fill="#24316b"/>
+            <rect x="370" y="200" width="80" height="90" rx="10" fill="#24316b"/>
+            <rect x="250" y="140" width="100" height="22" rx="10" fill="#6d28d9"/>
+            <path d="M80 355 Q180 330 240 350 T520 350" stroke="#38bdf8" stroke-width="3" fill="none" opacity="0.6"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <div class="title">
+        <div>
+          <div class="eyebrow">About Us</div>
+          <h2>Excellence in academics, research, and community impact</h2>
+          <p class="sub">We nurture holistic growth through interdisciplinary learning, state‑of‑the‑art infrastructure, and strong industry linkages. Our faculty, research centers, and student societies collaborate to solve real‑world problems.</p>
+        </div>
+      </div>
+      <div class="grid cols-3">
+        <div class="card">
+          <span class="pill">NAAC & NBA Focused</span>
+          <h3>Quality & Accreditation</h3>
+          <p>Outcome‑based education with continuous improvement practices across departments.</p>
+        </div>
+        <div class="card">
+          <span class="pill">Modern Labs</span>
+          <h3>Infrastructure</h3>
+          <p>Advanced labs, digital library, innovation & incubation centers, and smart classrooms.</p>
+        </div>
+        <div class="card">
+          <span class="pill">Industry 4.0</span>
+          <h3>Skill‑First Approach</h3>
+          <p>Hackathons, internships, certifications, and project‑based learning with mentors.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs -->
+  <section id="programs">
+    <div class="container">
+      <div class="title">
+        <div>
+          <div class="eyebrow">Programs</div>
+          <h2>Undergraduate & Postgraduate Offerings</h2>
+          <p class="sub">Pick a path that fits your passion. Each program blends fundamentals with hands‑on learning, industry projects, and career support.</p>
+        </div>
+        <a class="btn ghost" href="#admissions">View Eligibility →</a>
+      </div>
+      <div class="grid cols-3">
+        <div class="card">
+          <h3>B.Tech (CSE, IT, E&TC, Mechanical, Civil)</h3>
+          <p>Core engineering programs with electives in AI/ML, Data Science, IoT, and Cloud.</p>
+        </div>
+        <div class="card">
+          <h3>MBA</h3>
+          <p>Dual specializations in Marketing, Finance, HR, Operations, and Business Analytics.</p>
+        </div>
+        <div class="card">
+          <h3>M.Tech</h3>
+          <p>Advanced engineering programs with research‑driven curriculum and lab immersion.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Admissions -->
+  <section id="admissions">
+    <div class="container">
+      <div class="title">
+        <div>
+          <div class="eyebrow">Admissions</div>
+          <h2>How to apply</h2>
+          <p class="sub">Follow the steps below to start your journey with JSPM. For any help, reach out to our admissions team.</p>
+        </div>
+        <a class="btn primary" href="#contact">Contact Admissions</a>
+      </div>
+      <div class="timeline">
+        <div class="step card">
+          <h3>1) Check Eligibility</h3>
+          <p>Verify program‑wise criteria (scores, prerequisites, and required documents).</p>
+        </div>
+        <div class="step card">
+          <h3>2) Register Online</h3>
+          <p>Fill the application form and upload documents. Keep payment details ready.</p>
+        </div>
+        <div class="step card">
+          <h3>3) Entrance & Counseling</h3>
+          <p>Appear for applicable entrance exams and participate in centralized counseling.</p>
+        </div>
+        <div class="step card">
+          <h3>4) Seat Allotment & Fees</h3>
+          <p>Confirm your seat by paying fees and completing document verification.</p>
+        </div>
+      </div>
+
+      <div style="margin-top:28px" class="faq">
+        <details>
+          <summary>What scholarships are available?</summary>
+          <p>Merit‑based, need‑based, and government scholarships are available. Category and EWS benefits as per norms.</p>
+        </details>
+        <details>
+          <summary>Is hostel facility available?</summary>
+          <p>Yes, separate hostels for boys and girls with mess, Wi‑Fi, study rooms, and 24×7 security.</p>
+        </details>
+        <details>
+          <summary>Can I apply before getting my exam results?</summary>
+          <p>Yes. Provisional admission is possible subject to submission of final mark sheets at the time of enrollment.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Campus Life -->
+  <section id="campus">
+    <div class="container">
+      <div class="title">
+        <div>
+          <div class="eyebrow">Campus Life</div>
+          <h2>Grow, lead, and make memories</h2>
+          <p class="sub">From technical clubs to cultural festivals—our campus is buzzing year‑round with opportunities to learn and lead.</p>
+        </div>
+      </div>
+      <div class="grid cols-3">
+        <div class="card"><h3>Clubs & Societies</h3><p>Coding, Robotics, E‑Cell, Cultural, Sports, Music, and more.</p></div>
+        <div class="card"><h3>Facilities</h3><p>Library, Innovation Lab, Language Lab, Cafeteria, Health Center, Sports Complex.</p></div>
+        <div class="card"><h3>Events</h3><p>Technovation, Annual Day, Hackathons, Industry Talks, Alumni Meetups.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Placements -->
+  <section id="placements">
+    <div class="container">
+      <div class="title">
+        <div>
+          <div class="eyebrow">Placements</div>
+          <h2>Strong industry connect & career outcomes</h2>
+          <p class="sub">A dedicated Training & Placement Cell conducts aptitude sessions, interview prep, and connects students with leading recruiters.</p>
+        </div>
+      </div>
+      <div class="grid cols-3">
+        <div class="card"><h3>Top Offers</h3><p>Competitive packages in Product, Consulting, and Core Engineering roles.</p></div>
+        <div class="card"><h3>Career Support</h3><p>Resume clinics, mock interviews, coding prep, and soft‑skills workshops.</p></div>
+        <div class="card"><h3>Internships</h3><p>Paid internships through industry MOUs and alumni networks.</p></div>
+      </div>
+      <div class="marquee" aria-label="Recruiters list" style="margin-top:18px">
+        <div class="badge">TCS</div>
+        <div class="badge">Infosys</div>
+        <div class="badge">Cognizant</div>
+        <div class="badge">Wipro</div>
+        <div class="badge">Capgemini</div>
+        <div class="badge">Accenture</div>
+        <div class="badge">Amazon</div>
+        <div class="badge">Microsoft</div>
+        <div class="badge">Siemens</div>
+        <div class="badge">Bosch</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="title">
+        <div>
+          <div class="eyebrow">Stories</div>
+          <h2>What our students say</h2>
+        </div>
+      </div>
+      <div class="grid cols-3">
+        <div class="card"><p>“The project‑based learning and hackathons helped me crack my dream role in a product company.”</p><p style="opacity:.8">— Shreya, CSE 2024</p></div>
+        <div class="card"><p>“Great mentors and strong alumni support. The culture pushes you to explore and build.”</p><p style="opacity:.8">— Om, E&TC 2023</p></div>
+        <div class="card"><p>“From internships to placements, the T&P cell guided me at every step.”</p><p style="opacity:.8">— Rohan, IT 2024</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <div class="title">
+        <div>
+          <div class="eyebrow">Contact</div>
+          <h2>Get in touch</h2>
+          <p class="sub">Have questions about admissions, programs, or collaborations? Send us a message and our team will reach out.</p>
+        </div>
+      </div>
+      <div class="contact">
+        <form class="card form" onsubmit="event.preventDefault(); fakeSubmit(this)">
+          <div style="display:grid; gap:12px; grid-template-columns:1fr 1fr">
+            <input class="input" placeholder="First name" required />
+            <input class="input" placeholder="Last name" required />
+          </div>
+          <input class="input" type="email" placeholder="Email" required />
+          <input class="input" type="tel" placeholder="Phone" />
+          <select class="input" required>
+            <option value="" disabled selected>Interested Program</option>
+            <option>B.Tech</option>
+            <option>MBA</option>
+            <option>M.Tech</option>
+          </select>
+          <textarea placeholder="Your message"></textarea>
+          <button class="btn primary" type="submit">Send Message</button>
+          <div id="formMsg" aria-live="polite" style="display:none; color:#bbf7d0">Thanks! We'll contact you soon.</div>
+        </form>
+        <div class="card map">
+          <!-- Replace src with official campus Google Map iframe if available -->
+          <iframe title="JSPM College Location" style="border:0; width:100%; height:100%" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=pune%20india&t=k&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="foot-grid">
+        <div>
+          <div class="logo"><span class="mark">🎓</span><span>JSPM College</span></div>
+          <p style="color:#cbd5ff; max-width:520px">An institution committed to academic excellence and inclusive growth. © <span id="year"></span> JSPM. All rights reserved.</p>
+        </div>
+        <div>
+          <h4>Academics</h4>
+          <a href="#programs">Programs</a>
+          <a href="#admissions">Admissions</a>
+          <a href="#placements">Placements</a>
+        </div>
+        <div>
+          <h4>Campus</h4>
+          <a href="#campus">Life @ JSPM</a>
+          <a href="#testimonials">Stories</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <a href="#">Brochure (PDF)</a>
+          <a href="#">Academic Calendar</a>
+          <a href="#">Anti‑Ragging Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button id="toTop" aria-label="Back to top">↑</button>
+
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const navMenu = document.getElementById('navMenu');
+    menuBtn?.addEventListener('click', () => {
+      const open = navMenu.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', open);
+    });
+
+    // Form fake submit
+    function fakeSubmit(form){
+      const msg = document.getElementById('formMsg');
+      msg.style.display='block';
+      form.reset();
+      setTimeout(()=> msg.style.display='none', 4000);
+    }
+
+    // Back to top
+    const toTop = document.getElementById('toTop');
+    window.addEventListener('scroll', ()=>{
+      toTop.style.display = window.scrollY > 600 ? 'inline-flex' : 'none';
+    });
+    toTop.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+
+    // Current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
